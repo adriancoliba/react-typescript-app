@@ -19,6 +19,7 @@ const classes = {
 
 interface Props {
     children: React.ReactNode;
+    type?: "submit" | "button" | "reset";
     onClick: () => void;
     variant?: string
     size?: string,
@@ -29,6 +30,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({
     children,
+    type = "button",
     onClick,
     variant = "primary",
     size = "normal",
@@ -39,7 +41,7 @@ const Button: React.FC<Props> = ({
   }) => {
     return (
         <button
-            type="button"
+            type={type}
             disabled={disabled}
             onClick={onClick}
             className={cls(`
