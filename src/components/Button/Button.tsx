@@ -11,21 +11,21 @@ const classes = {
         large: "px-8 py-3 text-lg rounded-lg"
     },
     variant: {
-        primary: "bg-blue-500 hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-white",
-        secondary: "bg-gray-200 hover:bg-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 text-gray-900 hover:text-white",
-        danger: "bg-red-500 hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white"
-    }
+        primary: "bg-blue-500 hover:bg-blue-800 text-white focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50",
+        secondary: "bg-gray-200 hover:bg-gray-500 text-gray-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50",
+        danger: "bg-red-500 hover:bg-red-800 text-white focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+    },
 }
 
 interface Props {
-    children: React.ReactNode;
-    type?: "submit" | "button" | "reset";
-    onClick: () => void;
-    variant?: "primary" | "secondary" | "danger"
+    children: React.ReactNode,
+    type?: "submit" | "button" | "reset",
+    onClick: () => void,
+    variant?: "primary" | "secondary" | "danger",
     size?: "small" | "medium" | "large",
-    pill?: string,
-    disabled?: boolean;
-    className?: string;
+    pill?: boolean,
+    disabled?: boolean,
+    className?: string,
 }
 
 const Button: React.FC<Props> = ({
@@ -34,7 +34,7 @@ const Button: React.FC<Props> = ({
     onClick,
     variant = "primary",
     size = "medium",
-    pill = "",
+    pill = false,
     disabled = false,
     className = "",
     ...rest
@@ -46,12 +46,11 @@ const Button: React.FC<Props> = ({
             onClick={onClick}
             className={cls(`
                 ${classes.base}
+                ${pill && classes.pill}
                 ${classes.size[size as keyof typeof classes.size]}
                 ${classes.variant[variant as keyof typeof classes.variant]}
-                ${pill && classes.pill}
                 ${disabled && classes.disabled}
                 ${className}
-
             `)}
             {...rest}
         >
