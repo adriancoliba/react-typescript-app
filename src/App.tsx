@@ -1,10 +1,25 @@
 import React from 'react';
 import './App.css';
-import { Button } from "./components";
+import { Button, Navbar, Tabbar } from "./components";
+import { useNavigation } from "./hooks";
+import { navigationData } from "./data";
 
-function App() {
+
+const App = () => {
+  const { currentRoute, setCurrentRoute } = useNavigation();
+
   return (
     <div className="App">
+      <Navbar
+        navigationData={navigationData}
+        currentRoute={currentRoute}
+        setCurrentRoute={setCurrentRoute}
+      />
+      <Tabbar
+        navigationData={navigationData}
+        currentRoute={currentRoute}
+        setCurrentRoute={setCurrentRoute}
+      />
       <header className="App-header">
         <a
           className="App-link"
